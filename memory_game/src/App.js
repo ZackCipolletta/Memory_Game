@@ -1,10 +1,30 @@
 
 import './index.css';
 
+
 function App() {
+
+  // const handleGridItemClick = (event) => {
+  //   const itemName = event.target.textContent;
+  //   console.log(itemName);
+  // };
+
+  const hoverOverItem = (event) => {
+    if (event.target.classList.contains('grid-item')) {
+      event.target.style.backgroundColor = 'blue';
+    }
+  };
+
+  const revert = (event) => {
+    if (event.target.classList.contains('grid-item')) {
+      event.target.style.backgroundColor = 'white';
+    }
+    
+  };
+
   return (
-    <div class="grid-container">
-      <div class="grid-item">1</div>
+    <div class="grid-container" onMouseOver={hoverOverItem} onMouseOut={revert}>
+      <div name="box1" class="grid-item">1</div>
       <div class="grid-item">2</div>
       <div class="grid-item">3</div>
       <div class="grid-item">4</div>

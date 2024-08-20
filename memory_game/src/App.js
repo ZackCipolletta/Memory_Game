@@ -11,23 +11,24 @@ function App() {
   let values = [];
 
   const changeColor = (e) => {
-    if (e.target.classList.contains('grid-item')) {
-      const currentColor = e.target.style.backgroundColor;
-
-      e.target.style.backgroundColor = currentColor === 'blue' ? 'black' : 'blue';
-      checkVals(e);
+    if (values.length < 2) {
+      if (e.target.classList.contains('grid-item')) {
+        const currentColor = e.target.style.backgroundColor;
+        e.target.style.backgroundColor = currentColor === 'blue' ? 'black' : 'blue';
+        checkVals(e);
+      }
     }
   };
 
   const checkVals = (e) => {
     if (values.length === 2) {
-      values = [];
     }
     values.push(e.target);
     if (values.length === 2) {
       if (values[0].getAttribute('data-value') === values[1].getAttribute('data-value')) {
         values.forEach((el) => el.className = `${el.className} done`);
         values.forEach((el) => el.style.backgroundColor = 'green');
+        resetValues();
       }
       else {
         setTimeout(resetColors, 1000);
@@ -38,6 +39,11 @@ function App() {
 
   const resetColors = () => {
     values.forEach((el) => el.style.backgroundColor = 'black');
+    resetValues();
+  };
+
+  const resetValues = () => {
+    values = [];
   };
 
 

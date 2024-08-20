@@ -4,15 +4,11 @@ import './index.css';
 
 function App() {
 
-  // const handleGridItemClick = (event) => {
-  //   const itemName = event.target.textContent;
-  //   console.log(itemName);
-  // };
   let values = [];
 
   const changeColor = (e) => {
     if (values.length < 2) {
-      if (e.target.classList.contains('grid-item')) {
+      if (!e.target.classList.contains('done')) {
         const currentColor = e.target.style.backgroundColor;
         e.target.style.backgroundColor = currentColor === 'blue' ? 'black' : 'blue';
         checkVals(e);

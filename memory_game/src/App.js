@@ -6,35 +6,40 @@ function App() {
 
   let values = [];
 
-  const changeColor = (e) => {
+  const handleSquareClick = (e) => {
     if (values.length < 2) {
-      if (!e.target.classList.contains('done')) {
-        const currentColor = e.target.style.backgroundColor;
-        e.target.style.backgroundColor = currentColor === 'blue' ? 'black' : 'blue';
-        checkVals(e);
-      }
+      changeColor(e);
+    };
+  };
+
+  const changeColor = (e) => {
+    if (!e.target.classList.contains('done')) {
+      const currentColor = e.target.style.backgroundColor;
+      e.target.style.backgroundColor = currentColor === 'blue' ? 'purple' : 'blue';
+      addValue(e);
     }
   };
 
-  const checkVals = (e) => {
-    if (values.length === 2) {
-    }
+  const addValue = (e) => {
     values.push(e.target);
     if (values.length === 2) {
-      if (values[0].getAttribute('data-value') === values[1].getAttribute('data-value')) {
-        values.forEach((el) => el.className = `${el.className} done`);
-        values.forEach((el) => el.style.backgroundColor = 'green');
-        resetValues();
-      }
-      else {
-        setTimeout(resetColors, 1000);
-      }
+      checkValue();
     }
-    values.forEach((el) => console.log(el.getAttribute('data-value')));
+  };
+
+  const checkValue = () => {
+    if (values[0].getAttribute('data-value') === values[1].getAttribute('data-value')) {
+      values.forEach((el) => el.className = `${el.className} done`);
+      values.forEach((el) => el.style.backgroundColor = 'green');
+      resetValues();
+    }
+    else {
+      setTimeout(resetColors, 1000);
+    }
   };
 
   const resetColors = () => {
-    values.forEach((el) => el.style.backgroundColor = 'black');
+    values.forEach((el) => el.style.backgroundColor = 'purple');
     resetValues();
   };
 
@@ -44,7 +49,7 @@ function App() {
 
 
   return (
-    <div class="grid-container" onClick={changeColor}   >
+    <div class="grid-container" onClick={handleSquareClick}   >
       <div id='1' data-value='2' class="grid-item">2</div>
       <div id='2' data-value='2' class="grid-item">2</div>
       <div id='3' data-value='4' class="grid-item">4</div>

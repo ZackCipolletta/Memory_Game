@@ -20,15 +20,26 @@ function App() {
   };
 
   const checkVals = (e) => {
+    if (values.length === 2) {
+      values = [];
+    }
     values.push(e.target);
     if (values.length === 2) {
-      if (values[0].getAttribute('data-value') === values[1].getAttribute('data-value') ) {
-        values.forEach((el) => el.className = null);
-        // values[0].className = null;
-        }
+      if (values[0].getAttribute('data-value') === values[1].getAttribute('data-value')) {
+        values.forEach((el) => el.className = 'done');
+        values.forEach((el) => el.style.backgroundColor = 'green');
       }
-      values.forEach((el) => console.log(el.getAttribute('data-value')));
+      else {
+        setTimeout(resetColors, 1000);
+      }
+    }
+    values.forEach((el) => console.log(el.getAttribute('data-value')));
   };
+
+  const resetColors = () => {
+    values.forEach((el) => el.style.backgroundColor = 'black');
+  };
+
 
   return (
     <div class="grid-container" onClick={changeColor}   >

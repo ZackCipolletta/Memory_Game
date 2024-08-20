@@ -30,3 +30,15 @@ code {
   font-size: 24px;
   background-color: black;
 }
+
+.done {
+  flex: 0 0 20%; /* Each item takes up 20% of the container width */
+  box-sizing: border-box;
+  border: 1px solid #000;
+  height: 100px; /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background-color: green
+}

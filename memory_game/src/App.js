@@ -7,29 +7,24 @@ function App() {
   let values = [];
 
   const handleSquareClick = (e) => {
-    if (values.length < 2) {
+    if (values.length === 0) {
       changeColor(e);
+    } else if (values.length === 1) {
+      verifyValue(e);
     };
   };
 
   const changeColor = (e) => {
     if (!e.target.classList.contains('done')) {
-      const currentColor = e.target.style.backgroundColor;
-      e.target.style.backgroundColor = currentColor === 'blue' ? 'purple' : 'blue';
+      e.target.style.backgroundColor = 'blue';
     };
-    if (values.length === 0) {
-      addValue(e);
-    } else {
-      verifyValue(e);
-    }
+    addValue(e);
   };
 
   const verifyValue = (e) => {
     if (values[0].id !== e.target.id) {
-      addValue(e);
-    } else {
-      resetValues();
-    };
+      changeColor(e);
+    }
   };
 
   const addValue = (e) => {
@@ -58,7 +53,6 @@ function App() {
   const resetValues = () => {
     values = [];
   };
-
 
   return (
     <div class="grid-container" onClick={handleSquareClick}   >

@@ -26,7 +26,7 @@ function App() {
     values.push(e.target);
     if (values.length === 2) {
       if (values[0].getAttribute('data-value') === values[1].getAttribute('data-value')) {
-        values.forEach((el) => el.className = 'done');
+        values.forEach((el) => el.className = `${el.className} done`);
         values.forEach((el) => el.style.backgroundColor = 'green');
       }
       else {

@@ -16,8 +16,20 @@ function App() {
     if (!e.target.classList.contains('done')) {
       const currentColor = e.target.style.backgroundColor;
       e.target.style.backgroundColor = currentColor === 'blue' ? 'purple' : 'blue';
+    };
+    if (values.length === 0) {
       addValue(e);
+    } else {
+      verifyValue(e);
     }
+  };
+
+  const verifyValue = (e) => {
+    if (values[0].id !== e.target.id) {
+      addValue(e);
+    } else {
+      resetValues();
+    };
   };
 
   const addValue = (e) => {
@@ -77,6 +89,6 @@ function App() {
       <div id='25' data-value='25' class="grid-item">25</div>
     </div>
   );
-}
+};
 
 export default App;

@@ -110,16 +110,15 @@ function App() {
 
       <div className="grid-container" onClick={handleSquareClick}>
         {col.map((el, index) => {
-          let el2 = 0;
-          if (el % 2 === 1) {
-            el2 = el + 2;
-          } else {
-            el2 = el + 1;
-          }
+          // check if the element in the array is odd or even. If odd add 2, otherwise add 1.
+          // assign the resulting value to data-value.
+          // This will give each element a matching data-value pair (3 & 3 or 5 & 5, etc)
+          // Since we have an array of 1 - 25, the pair will be odds starting with 3.
+          const pair = el % 2 === 1 ? el + 2 : el + 1;
           return (
             <div
               id={`item-${index}`}
-              data-value={el2}
+              data-value={pair}
               className="grid-item"
               key={index}
             >

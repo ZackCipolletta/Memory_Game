@@ -69,28 +69,29 @@ function App() {
   };
 
   let col = [];
-  let col2 = [];
 
-  (() => {
+  function shuffleArray() {
+    let array = [];
+    let shuffledArray = [];
+
     for (let i = 1; i <= 25; i++) {
-      col.push(i);
+      array.push(i);
     }
-  })();
 
-  function colRandom() {
-    return (Math.floor(Math.random() * col.length))
+    while (array.length > 0) {
+      const randomIndex = Math.floor(Math.random() * array.length);
+      shuffledArray.push(...array.splice(randomIndex, 1));
+    }
+
+    return shuffledArray;
   }
 
-  (() => {
-    for (let i = col.length; i > 0; i++) {
-      col2.push(...col.splice(colRandom(), 1));
-    }
-  })();
+  col = shuffleArray();
 
   return (
     <>
       <div className="grid-container" onClick={handleSquareClick}>
-        {col2.map((el, index) => {
+        {col.map((el, index) => {
           // check if the element in the array is odd or even. If odd add 2, otherwise add 1.
           // assign the resulting value to data-value.
           // This will give each element a matching data-value pair (3 & 3 or 5 & 5, etc)

@@ -83,19 +83,15 @@ function App() {
   let col = [];
 
   function shuffleArray() {
-    // let array = [];
-    let shuffledArray = [];
-
-    // for (let i = 1; i <= 25; i++) {
-    //   array.push(i);
-    // }
-
-    while (iconsArray.length > 0) {
-      const randomIndex = Math.floor(Math.random() * iconsArray.length);
-      shuffledArray.push(...iconsArray.splice(randomIndex, 1));
+    let array = [...iconsArray, ...iconsArray]; // Duplicate the iconsArray to create pairs
+  
+    // use Fisher-Yates shuffle algorithm to shuffle the array in place 
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1)); // Get a random index from 0 to i
+      [array[i], array[j]] = [array[j], array[i]];  // Swap elements at i and j
     }
-
-    return shuffledArray;
+  
+    return array; // The original array is now shuffled
   }
 
   col = shuffleArray();
@@ -118,7 +114,6 @@ function App() {
               style={{
                 height: '200px', // Set the height of the div
                 width: '200px', // Set the width of the div
-                
                 backgroundImage: `url(${el})`, // Path to your image
                 backgroundSize: 'cover', // Adjust background image size
                 backgroundPosition: 'center', // Center the background image

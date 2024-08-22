@@ -1,8 +1,21 @@
 
 import './index.css';
 
-
 function App() {
+
+  const icons = [
+    '../public/Images/arturius.png',
+    '../public/Images/case-2.0.png',
+    '../public/Images/centurion.png',
+    '../public/Images/coliostro.png',
+    '../public/Images/crusher.png',
+    '../public/Images/derrick.png',
+    '../public/Images/doomray.png',
+    '../public/Images/elias.png',
+    '../public/Images/elram.png',
+    '../public/Images/evo-suit.png'
+  ];
+
 
   let values = [];
 

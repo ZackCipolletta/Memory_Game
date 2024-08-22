@@ -3,19 +3,18 @@ import './index.css';
 
 function App() {
 
-  const icons = [
-    '../public/Images/arturius.png',
-    '../public/Images/case-2.0.png',
-    '../public/Images/centurion.png',
-    '../public/Images/coliostro.png',
-    '../public/Images/crusher.png',
-    '../public/Images/derrick.png',
-    '../public/Images/doomray.png',
-    '../public/Images/elias.png',
-    '../public/Images/elram.png',
-    '../public/Images/evo-suit.png'
+  const iconsArray = [
+    '/Images//arturius.png',
+    '/Images/case-2.0.png',
+    '/Images/centurion.png',
+    '/Images/coliostro.png',
+    '/Images/crusher.png',
+    '/Images/derrick.png',
+    '/Images/doomray.png',
+    '/Images/elias.png',
+    '/Images/elram.png',
+    '/Images/evo-suit.png'
   ];
-
 
   let values = [];
 
@@ -84,16 +83,16 @@ function App() {
   let col = [];
 
   function shuffleArray() {
-    let array = [];
+    // let array = [];
     let shuffledArray = [];
 
-    for (let i = 1; i <= 25; i++) {
-      array.push(i);
-    }
+    // for (let i = 1; i <= 25; i++) {
+    //   array.push(i);
+    // }
 
-    while (array.length > 0) {
-      const randomIndex = Math.floor(Math.random() * array.length);
-      shuffledArray.push(...array.splice(randomIndex, 1));
+    while (iconsArray.length > 0) {
+      const randomIndex = Math.floor(Math.random() * iconsArray.length);
+      shuffledArray.push(...iconsArray.splice(randomIndex, 1));
     }
 
     return shuffledArray;
@@ -109,15 +108,24 @@ function App() {
           // assign the resulting value to data-value.
           // This will give each element a matching data-value pair (3 & 3 or 5 & 5, etc)
           // Since we have an array of 1 - 25, the pair will be odds starting with 3.
-          const pair = el % 2 === 1 ? el + 2 : el + 1;
+          // const pair = el % 2 === 1 ? el + 2 : el + 1;
           return (
             <div
               id={`item-${index}`}
-              data-value={pair}
+              data-value={el}
               className="grid-item"
               key={index}
+              style={{
+                height: '200px', // Set the height of the div
+                width: '200px', // Set the width of the div
+                
+                backgroundImage: `url(${el})`, // Path to your image
+                backgroundSize: 'cover', // Adjust background image size
+                backgroundPosition: 'center', // Center the background image
+                backgroundRepeat: 'no-repeat', // Ensure the image doesn't repeat
+              }}
             >
-              {el}
+              {/* {el} */}
             </div>
           );
         })}

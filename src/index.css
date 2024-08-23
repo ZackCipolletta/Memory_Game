@@ -32,10 +32,15 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
   background-color: purple;
 }
 
-.done {
-  background-color: green
+/* Apply when a card is flipped */
+.grid-item.flipped {
+  background-color: blue;
+}
+
+/* Apply when a card is matched */
+.grid-item.done {
+  background-color: green;
 }

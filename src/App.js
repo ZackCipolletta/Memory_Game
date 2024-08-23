@@ -13,7 +13,7 @@ function App() {
     '/Images/doomray.png',
     '/Images/elias.png',
     '/Images/elram.png',
-    '/Images/evo-suit.png'
+    '/Images/evo-suit.png',
   ];
 
   let values = [];
@@ -31,7 +31,8 @@ function App() {
   const changeColor = (e) => {
     // if square has been marked 'done' do nothing otherwise chang the square to blue
     if (!e.target.classList.contains('done')) {
-      e.target.style.backgroundColor = 'blue';
+      e.target.className = e.target.className + ' flipped';
+      console.log("this is the item's classlist: ", e.target)
     };
     addValue(e);
   };
@@ -59,7 +60,6 @@ function App() {
   const checkValue = () => {
     if (values[0].getAttribute('data-value') === values[1].getAttribute('data-value')) {
       values.forEach((el) => el.className = `${el.className} done`);
-      values.forEach((el) => el.style.backgroundColor = 'green');
       resetValues();
     }
     // if data-values do not match, wait 1 second then call reset colors
@@ -100,11 +100,6 @@ function App() {
     <>
       <div className="grid-container" onClick={handleSquareClick}>
         {col.map((el, index) => {
-          // check if the element in the array is odd or even. If odd add 2, otherwise add 1.
-          // assign the resulting value to data-value.
-          // This will give each element a matching data-value pair (3 & 3 or 5 & 5, etc)
-          // Since we have an array of 1 - 25, the pair will be odds starting with 3.
-          // const pair = el % 2 === 1 ? el + 2 : el + 1;
           return (
             <div
               id={`item-${index}`}

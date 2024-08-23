@@ -72,6 +72,10 @@ function App() {
   // then call reset values function
   const resetClasses = () => {
     values.forEach((el) => {
+      // since classList is not an array it is a DOMTokenList which behaves like an array,
+      // it must first be converted to an Array to be iterable (allow it to be filtered).
+      // Once the array is filtered, join it back to one string (separated by spaces), then
+      // apply the long string as the classList once more.
       el.classList = Array.from(el.classList)
         .filter(item => !item.includes('flipped'))
         .join(' ');

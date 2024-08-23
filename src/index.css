@@ -17,30 +17,42 @@ code {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 6 equal-width columns */
-  gap: 0; /* No gap between grid items */
-  width: 100%; /* Makes the grid take the full width of its container */
-  max-width: 600px; /* Controls the maximum width of the grid */
+  grid-template-columns: repeat(4, 1fr);
+  /* 6 equal-width columns */
+  gap: 0;
+  /* No gap between grid items */
+  width: 100%;
+  /* Makes the grid take the full width of its container */
+  max-width: 600px;
+  /* Controls the maximum width of the grid */
 }
 
 .grid-item {
   aspect-ratio: 1;
-  width: 200px; /* Use fixed width */
-  height: 200px; /* Use fixed height */
+  width: 200px;
+  /* Use fixed width */
+  height: 200px;
+  /* Use fixed height */
   box-sizing: border-box;
   border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: purple;
-}
-
-/* Apply when a card is flipped */
-.grid-item.flipped {
-  background-color: blue;
+  overflow: hidden;
+  ;
 }
 
 /* Apply when a card is matched */
 .grid-item.done {
   background-color: green;
+}
+
+#hidden {
+  visibility: hidden;
+}
+
+/* Apply when a card is flipped */
+#flipped {
+  visibility: visible;
 }

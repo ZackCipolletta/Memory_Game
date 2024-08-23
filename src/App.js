@@ -31,8 +31,9 @@ function App() {
   const changeColor = (e) => {
     // if square has been marked 'done' do nothing otherwise chang the square to blue
     if (!e.target.classList.contains('done')) {
-      e.target.className = e.target.className + ' flipped';
-      console.log("this is the item's classlist: ", e.target.classList);
+      e.target.classList.add('flipped');
+      e.target.children[0].id = 'flipped';
+      console.log("this is the item's classlist: ", e.target);
     };
     addValue(e);
   };
@@ -64,13 +65,13 @@ function App() {
     }
     // if data-values do not match, wait 1 second then call reset colors
     else {
-      setTimeout(resetClasses, 1000);
+      setTimeout(reset, 1000);
     }
   };
 
   // reset background colors of each element in array back to original color
   // then call reset values function
-  const resetClasses = () => {
+  const reset = () => {
     values.forEach((el) => {
       // since classList is not an array it is a DOMTokenList which behaves like an array,
       // it must first be converted to an Array to be iterable (allow it to be filtered).
@@ -79,6 +80,7 @@ function App() {
       el.classList = Array.from(el.classList)
         .filter(item => !item.includes('flipped'))
         .join(' ');
+        el.children[0].id= 'hidden';
     });
     resetValues();
   };
@@ -117,13 +119,14 @@ function App() {
               style={{
                 height: '200px', // Set the height of the div
                 width: '200px', // Set the width of the div
-                backgroundImage: `url(${el})`, // Path to your image
                 backgroundSize: 'cover', // Adjust background image size
                 backgroundPosition: 'center', // Center the background image
                 backgroundRepeat: 'no-repeat', // Ensure the image doesn't repeat
+                // opacity: .5, // Hide initially
               }}
             >
               {/* {el} */}
+              <img id="hidden" alt="theImage" src={el}></img>
             </div>
           );
         })}

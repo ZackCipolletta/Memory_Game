@@ -32,7 +32,7 @@ function App() {
     // if square has been marked 'done' do nothing otherwise chang the square to blue
     if (!e.target.classList.contains('done')) {
       e.target.className = e.target.className + ' flipped';
-      console.log("this is the item's classlist: ", e.target)
+      console.log("this is the item's classlist: ", e.target.classList);
     };
     addValue(e);
   };
@@ -64,14 +64,18 @@ function App() {
     }
     // if data-values do not match, wait 1 second then call reset colors
     else {
-      setTimeout(resetColors, 1000);
+      setTimeout(resetClasses, 1000);
     }
   };
 
   // reset background colors of each element in array back to original color
   // then call reset values function
-  const resetColors = () => {
-    values.forEach((el) => el.style.backgroundColor = 'purple');
+  const resetClasses = () => {
+    values.forEach((el) => {
+      el.classList = Array.from(el.classList)
+        .filter(item => !item.includes('flipped'))
+        .join(' ');
+    });
     resetValues();
   };
 
@@ -84,13 +88,13 @@ function App() {
 
   function shuffleArray() {
     let array = [...iconsArray, ...iconsArray]; // Duplicate the iconsArray to create pairs
-  
+
     // use Fisher-Yates shuffle algorithm to shuffle the array in place 
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1)); // Get a random index from 0 to i
       [array[i], array[j]] = [array[j], array[i]];  // Swap elements at i and j
     }
-  
+
     return array; // The original array is now shuffled
   }
 
